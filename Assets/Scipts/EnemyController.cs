@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class EnemyController : MonoBehaviour
     public float initialSpeed = 2f; // Initial time to move and return to the original position
     public float speedIncreaseRate = 0.1f; // Rate at which the speed increases over time
     public float maxSpeed = 0.5f; // Maximum speed limit
+    public TextMeshProUGUI scoreText;
 
+    private int score=0;
     private Vector3 originalPosition1;
     private Vector3 originalPosition2;
     private float currentSpeed;
 
     void Start()
     {
+        UpdateScoreText();
         originalPosition1 = object1.transform.position;
         originalPosition2 = object2.transform.position;
         currentSpeed = initialSpeed;
@@ -42,6 +46,9 @@ public class EnemyController : MonoBehaviour
 
             // Increase the speed gradually, but do not exceed maxSpeed
             currentSpeed = Mathf.Max(maxSpeed, currentSpeed - speedIncreaseRate);
+            
+            score++;
+            UpdateScoreText();
         }
     }
 
@@ -72,5 +79,9 @@ public class EnemyController : MonoBehaviour
 
         obj.transform.position = targetPosition;
     }
-    
+    void UpdateScoreText()
+    {
+        scoreText.text = "Score: " + score.ToString();
+    }
+
 }
