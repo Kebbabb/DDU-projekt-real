@@ -13,7 +13,9 @@ public class EnemyController : MonoBehaviour
     public float initialSpeed = 2f; // Initial time to move and return to the original position
     public float speedIncreaseRate = 0.1f; // Rate at which the speed increases over time
     public float maxSpeed = 0.5f; // Maximum speed limit
-    public TextMeshProUGUI scoreText;
+    public TextMeshPro scoreText1;
+    public TextMeshPro scoreText2;
+    public TextMeshPro scoreText3;
 
     private int score=0;
     private Vector3 originalPosition1;
@@ -81,7 +83,9 @@ public class EnemyController : MonoBehaviour
     }
     void UpdateScoreText()
     {
-        scoreText.text = "Score: " + score.ToString();
+        scoreText1.text = score.ToString();
+        scoreText2.text = score.ToString();
+        scoreText3.text = score.ToString();
     }
 
 }

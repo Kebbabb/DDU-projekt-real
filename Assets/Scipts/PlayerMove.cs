@@ -31,14 +31,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             targetPosition = originalPosition + Vector3.right * moveAmount;
-            input = -1f;
+            input = 1f;
 
         }
         // Check for left arrow key input
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             targetPosition = originalPosition + Vector3.left * moveAmount;
-            input = 1f;
+            input = -1f;
 
         }
         
