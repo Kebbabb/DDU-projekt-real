@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public TextMeshPro scoreText1;
     public TextMeshPro scoreText2;
     public TextMeshPro scoreText3;
+    public float Ani=0;
 
     private int score=0;
     private Vector3 originalPosition1;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
             // Increase the speed gradually, but do not exceed maxSpeed
             currentSpeed = Mathf.Max(maxSpeed, currentSpeed - speedIncreaseRate);
-            
+
             score++;
             UpdateScoreText();
         }
