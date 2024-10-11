@@ -5,6 +5,7 @@ using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
+
     public GameObject object1;
     public GameObject object2;
     public float moveAmount = 1f; // Amount to move the objects
@@ -17,7 +18,7 @@ public class EnemyController : MonoBehaviour
     public TextMeshPro scoreText2;
     public TextMeshPro scoreText3;
 
-    private int score=0;
+    private int score = 0;
     private Vector3 originalPosition1;
     private Vector3 originalPosition2;
     private float currentSpeed;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
             // Increase the speed gradually, but do not exceed maxSpeed
             currentSpeed = Mathf.Max(maxSpeed, currentSpeed - speedIncreaseRate);
-            
+
             score++;
             UpdateScoreText();
         }
@@ -87,5 +88,5 @@ public class EnemyController : MonoBehaviour
         scoreText2.text = score.ToString();
         scoreText3.text = score.ToString();
     }
-
+    
 }
