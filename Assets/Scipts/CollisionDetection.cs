@@ -6,7 +6,8 @@ public class EnemyCollisionController : MonoBehaviour
     public Collider playerCollider;
 
     // Reference to the enemy's collider
-    public Collider enemyCollider;
+    public Collider enemyCollider1;
+    public Collider enemyCollider2;
 
     void Update()
     {
@@ -16,7 +17,12 @@ public class EnemyCollisionController : MonoBehaviour
     void CheckForCollision()
     {
         // Check if the player's collider is intersecting with the enemy's collider
-        if (playerCollider.bounds.Intersects(enemyCollider.bounds))
+        if (playerCollider.bounds.Intersects(enemyCollider1.bounds))
+        {
+            // Handle collision
+            OnEnemyCollision();
+        }
+        else if (playerCollider.bounds.Intersects(enemyCollider2.bounds))
         {
             // Handle collision
             OnEnemyCollision();
