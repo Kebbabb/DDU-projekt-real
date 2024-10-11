@@ -28,9 +28,12 @@ public class EnemyController : MonoBehaviour
     {
         while (true)
         {
+            currentSpeed = Mathf.Min(maxSpeed, currentSpeed + speedIncreaseRate);
             // Wait for a random interval between punches
             float waitTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(waitTime);
+
+            punchAnimator.speed = currentSpeed; 
 
             // Randomly choose which punch to trigger
             float punchChoice = Random.value;
@@ -47,7 +50,7 @@ public class EnemyController : MonoBehaviour
             
 
             // Increase the speed of punching gradually but don't exceed maxSpeed
-            currentSpeed = Mathf.Max(maxSpeed, currentSpeed - speedIncreaseRate);
+            
             score++;
             UpdateScoreText();
         }

@@ -4196,7 +4196,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e08c8f45aa2c9244c81357fe8af8fb3b, type: 3}
   - {fileID: 8300000, guid: 83127a54ab02fcc42a7b9bbaf871af5a, type: 3}
   - {fileID: 8300000, guid: 45c6b1644a13b11458c2309f89b272e3, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 679498287}
 --- !u!114 &679498289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11200,8 +11200,8 @@ MonoBehaviour:
   minInterval: 1
   maxInterval: 3
   initialSpeed: 1
-  speedIncreaseRate: 1
-  maxSpeed: 20
+  speedIncreaseRate: 0.1
+  maxSpeed: 2
   scoreText1: {fileID: 1957614496}
   scoreText2: {fileID: 216669097}
   scoreText3: {fileID: 1277578548}
