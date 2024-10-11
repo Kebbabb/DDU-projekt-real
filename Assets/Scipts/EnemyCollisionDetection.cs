@@ -1,10 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCollisionDetection : MonoBehaviour
 {
+    // Reference to the player's collider
+    public Collider playerCollider;
+
+    // Reference to the enemy's collider
+    public Collider enemyCollider1;
+    public Collider enemyCollider2;
 
     GameManagerScript gameManagerScript;
     GameObject manager;
@@ -14,19 +17,31 @@ public class EnemyCollisionDetection : MonoBehaviour
         manager = GameObject.Find("GameManager");
         gameManagerScript = manager.GetComponent<GameManagerScript>();
     }
+
     void Update()
     {
-       
+        CheckForCollision();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void CheckForCollision()
     {
-        if (other.gameObject.CompareTag("Player")) {
-            AudioManager.instance.UseSoundEffect(2);
-            gameManagerScript.gameOver();
-            Time.timeScale = 0.0f;
+        // Check if the player's collider is intersecting with the enemy's collider
+        if (playerCollider.bounds.Intersects(enemyCollider1.bounds))
+        {
+            // Handle collision
+            OnEnemyCollision();
+        }
+        else if (playerCollider.bounds.Intersects(enemyCollider2.bounds))
+        {
+            // Handle collision
+            OnEnemyCollision();
         }
     }
 
+    void OnEnemyCollision()
+    {
+        AudioManager.instance.UseSoundEffect(2);
+        gameManagerScript.gameOver();
+        Time.timeScale = 0.0f;
+    }
 }
-
