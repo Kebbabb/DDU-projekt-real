@@ -18,49 +18,40 @@ public class EnemyController : MonoBehaviour
 
     private int score = 0;
     private float currentSpeed;
+    private float test = 0;
 
-    void Start()
+    public static EnemyController instance;
+
+
+    void OnEnable()
     {
+        instance = this; // Set the instance each time the scene loads
         UpdateScoreText();
-        currentSpeed = initialSpeed;
-        StartCoroutine(PunchCoroutine());
+        currentSpeed = initialSpeed; // Reset speed to initial value
+        StartCoroutine(PunchCoroutine()); // Start the coroutine directly without persistence
     }
 
-    IEnumerator PunchCoroutine()// Coroutine for at håndtere slag
-    {
-        while (true)// siger at den skal kører i en uendelig løkke
-        {
-            //øger hastigheden med speedIncreaseRate
-            currentSpeed = Mathf.Min(maxSpeed, currentSpeed + speedIncreaseRate);
+    private bool IsCoroutineRunning = false;
 
-            // får coroutinen til at vente et tilfældigt antal sekunder mellem minInterval og maxInterval
-            // før den kører igen
+    public void RestartEnemyCoroutine()
+    {
+        StopAllCoroutines(); // Stops any running coroutines
+        StartCoroutine(PunchCoroutine()); // Starts the punch coroutine again
+    }
+
+    public IEnumerator PunchCoroutine() // Changed from private to public
+    {
+        while (true)
+        {
+            currentSpeed = Mathf.Min(maxSpeed, currentSpeed + speedIncreaseRate);
             float waitTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(waitTime);
 
-            // Sætter hastigheden på animationen
             punchAnimator.speed = currentSpeed;
+            punchAnimator.SetTrigger(Random.value > 0.5f ? "LeftPunch" : "RightPunch");
 
-            // Vælger tilfældigt om det skal være et venstre eller højre slag
-            float punchChoice = Random.value;
-            if (punchChoice > 0.5f)
-            {
-                //laver et venstre slag
-                punchAnimator.SetTrigger("LeftPunch");// aktiverer en parameter kaldet LeftPunch.
-                                                      // dette vil starte animationen, der har parameteren LeftPunch
-                                                      // i animator vinduet inde i unity.
-            }
-            else
-            {
-                //laver et højre slag
-                punchAnimator.SetTrigger("RightPunch");// aktiverer en parameter kaldet RightPunch.
-                                                       // dette vil starte animationen, der har parameteren RightPunch
-                                                       // i animator vinduet inde i unity.
-            }
-
-            //Øger scoren med 1
             score++;
-            UpdateScoreText();//opdaterer scoren i UI
+            UpdateScoreText();
         }
     }
     void UpdateScoreText()

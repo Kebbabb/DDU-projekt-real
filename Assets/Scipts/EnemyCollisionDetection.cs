@@ -26,6 +26,10 @@ public class EnemyCollisionDetection : MonoBehaviour
 
     void CheckForCollision()//metode til at tjekke for kollision mellem spiller og enemy
     {
+        if (playerCollider == null || enemyCollider1 == null || enemyCollider2 == null)
+        {
+            return; // Exit the method if any collider is missing
+        }
         // Tjekker om spillerens collider kolliderer med enemy1(venstrehånd) eller enemy2(højrehånd) colliders
         if (playerCollider.bounds.Intersects(enemyCollider1.bounds))
         {
@@ -45,6 +49,6 @@ public class EnemyCollisionDetection : MonoBehaviour
         gameManagerScript.gameOver();// kalder gameOver metoden fra GameManagerScript
         //ganeOver metoden fra GameManagerScript aktiverer gameOverUI som er et gameobject i unity, der viser,
         //at spillet er slut.
-        Time.timeScale = 0.0f;// sætter tiden til 0
+       
     }
 }
