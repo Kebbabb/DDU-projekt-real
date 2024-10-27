@@ -4,12 +4,14 @@ using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
-    public Animator punchAnimator; // Animator for the model's punches
-    public float minInterval = 1f; // Minimum interval between punches
-    public float maxInterval = 5f; // Maximum interval between punches
-    public float initialSpeed = 2f; // Speed at which the punches happen
-    public float speedIncreaseRate = 0.1f; // Rate at which punch speed increases over time
-    public float maxSpeed = 0.5f; // Maximum speed limit for punches
+    public Animator punchAnimator; // referanse til animator komponenten
+    public float minInterval = 1f; // Minimum tid mellem slag
+    public float maxInterval = 5f; // Maximum tid mellem slag
+    public float initialSpeed = 2f;// Start hastighed
+    public float speedIncreaseRate = 0.1f; // Hastigheds stigning
+    public float maxSpeed = 0.5f; // Max hastighed
+
+    //referanse til score text, der er 3 forskellige fordi vi har 3 forskellige UI elementer
     public TextMeshPro scoreText1;
     public TextMeshPro scoreText2;
     public TextMeshPro scoreText3;
@@ -24,35 +26,41 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(PunchCoroutine());
     }
 
-    IEnumerator PunchCoroutine()
+    IEnumerator PunchCoroutine()// Coroutine for at håndtere slag
     {
-        while (true)
+        while (true)// siger at den skal kører i en uendelig løkke
         {
+            //øger hastigheden med speedIncreaseRate
             currentSpeed = Mathf.Min(maxSpeed, currentSpeed + speedIncreaseRate);
-            // Wait for a random interval between punches
+
+            // får coroutinen til at vente et tilfældigt antal sekunder mellem minInterval og maxInterval
+            // før den kører igen
             float waitTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(waitTime);
 
-            punchAnimator.speed = currentSpeed; 
+            // Sætter hastigheden på animationen
+            punchAnimator.speed = currentSpeed;
 
-            // Randomly choose which punch to trigger
+            // Vælger tilfældigt om det skal være et venstre eller højre slag
             float punchChoice = Random.value;
             if (punchChoice > 0.5f)
             {
-                punchAnimator.SetTrigger("LeftPunch");
+                //laver et venstre slag
+                punchAnimator.SetTrigger("LeftPunch");// aktiverer en parameter kaldet LeftPunch.
+                                                      // dette vil starte animationen, der har parameteren LeftPunch
+                                                      // i animator vinduet inde i unity.
             }
             else
             {
-                punchAnimator.SetTrigger("RightPunch");
+                //laver et højre slag
+                punchAnimator.SetTrigger("RightPunch");// aktiverer en parameter kaldet RightPunch.
+                                                       // dette vil starte animationen, der har parameteren RightPunch
+                                                       // i animator vinduet inde i unity.
             }
 
-            // Wait for the punch animation to complete
-            
-
-            // Increase the speed of punching gradually but don't exceed maxSpeed
-            
+            //Øger scoren med 1
             score++;
-            UpdateScoreText();
+            UpdateScoreText();//opdaterer scoren i UI
         }
     }
     void UpdateScoreText()
