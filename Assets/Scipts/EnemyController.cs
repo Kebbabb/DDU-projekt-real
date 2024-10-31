@@ -7,9 +7,9 @@ public class EnemyController : MonoBehaviour
     public Animator punchAnimator; // referanse til animator komponenten
     public float minInterval = 1f; // Minimum tid mellem slag
     public float maxInterval = 5f; // Maximum tid mellem slag
-    public float initialSpeed = 2f;// Start hastighed
+    public float initialSpeed = 1f;// Start hastighed
     public float speedIncreaseRate = 0.1f; // Hastigheds stigning
-    public float maxSpeed = 0.5f; // Max hastighed
+    public float maxSpeed = 4f; // Max hastighed
 
     //referanse til score text, der er 3 forskellige fordi vi har 3 forskellige UI elementer
     public TextMeshPro scoreText1;
