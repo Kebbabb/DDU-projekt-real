@@ -5,8 +5,8 @@ using TMPro;
 public class EnemyController : MonoBehaviour
 {
     public Animator punchAnimator; // referanse til animator komponenten
-    public float minInterval = 1f; // Minimum tid mellem slag
-    public float maxInterval = 5f; // Maximum tid mellem slag
+    private float minInterval = 1f; // Minimum tid mellem slag
+    private float maxInterval = 3f; // Maximum tid mellem slag
     public float initialSpeed = 1f;// Start hastighed
     public float speedIncreaseRate = 0.1f; // Hastigheds stigning
     public float maxSpeed = 4f; // Max hastighed
@@ -22,10 +22,34 @@ public class EnemyController : MonoBehaviour
 
     public static EnemyController instance;
 
+    private void Start()
+    {
+        
+        int difficulty = PlayerPrefs.GetInt("Difficulty", 1);
+        switch (difficulty)
+        {
+            case 0: // Easy
+                Time.timeScale = 0.9f;
+                break;
+            case 1: // Medium
+                Time.timeScale = 1.25f;
+                minInterval = 3f;
+                break;
+            case 2: // Hard
+                Time.timeScale = 1.4f;
+                minInterval = 3f;
+                break;
+        }
+
+   
+    }
+
 
     void OnEnable()
     {
         instance = this; // Set the instance each time the scene loads
+        
+
         UpdateScoreText();
         currentSpeed = initialSpeed; // Reset speed to initial value
         StartCoroutine(PunchCoroutine()); // Start the coroutine directly without persistence

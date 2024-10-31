@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3116,7 +3116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &529383273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9590,7 +9590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdadb392e393d44ab6244eb27da5c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManagerScript: {fileID: 679498289}
 --- !u!114 &1652619970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11198,11 +11197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchAnimator: {fileID: 1817008694}
-  minInterval: 1
-  maxInterval: 3
   initialSpeed: 1
-  speedIncreaseRate: 0.1
-  maxSpeed: 2
+  speedIncreaseRate: 0.07
+  maxSpeed: 3
   scoreText1: {fileID: 1957614496}
   scoreText2: {fileID: 216669097}
   scoreText3: {fileID: 1277578548}
